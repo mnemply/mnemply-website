@@ -65,7 +65,8 @@ body::before {
   background-size: 8rem 8rem, 10rem 10rem, 9rem 9rem;
 }
 
-body.nav-open {
+body.nav-open,
+body.modal-open {
   overflow: hidden;
 }
 
@@ -109,13 +110,10 @@ a {
 }
 
 .brand-mark {
-  display: grid;
   width: 2.8rem;
   height: 2.8rem;
-  place-items: center;
-  color: var(--white);
-  background: conic-gradient(from 180deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--indigo), var(--violet), var(--red));
-  border: 3px solid var(--white);
+  display: block;
+  object-fit: contain;
   border-radius: 50%;
   box-shadow: 0 12px 25px rgba(108, 71, 150, 0.28);
 }
@@ -783,6 +781,7 @@ h3 {
 }
 
 .cousin-card {
+  appearance: none;
   position: relative;
   display: grid;
   min-height: 18rem;
@@ -795,6 +794,9 @@ h3 {
   border-radius: var(--radius);
   box-shadow: var(--soft-shadow);
   transition: transform 180ms ease, box-shadow 180ms ease;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
 }
 
 .cousin-card::before {
@@ -825,6 +827,11 @@ h3 {
   box-shadow: var(--shadow);
 }
 
+.cousin-card:focus-visible {
+  outline: 4px solid var(--yellow);
+  outline-offset: 4px;
+}
+
 .cousin-card img {
   position: relative;
   z-index: 1;
@@ -852,6 +859,131 @@ h3 {
 .cousin-blue { background: linear-gradient(180deg, var(--blue-20), var(--blue-10)); border-top: 0.5rem solid var(--blue); }
 .cousin-indigo { background: linear-gradient(180deg, var(--indigo-20), var(--white)); border-top: 0.5rem solid var(--indigo); }
 .cousin-violet { background: linear-gradient(180deg, var(--violet-20), var(--violet-10)); border-top: 0.5rem solid var(--violet); }
+
+.cousin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.cousin-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 23, 47, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.modal-card {
+  --modal-color: var(--red);
+  --modal-tint: var(--red-10);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.75fr) minmax(0, 1.25fr);
+  align-items: center;
+  width: min(46rem, 100%);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 22%, color-mix(in srgb, var(--modal-color) 24%, transparent), transparent 11rem),
+    linear-gradient(135deg, var(--modal-tint), var(--white));
+  border: 0.55rem solid var(--modal-color);
+  border-radius: 30px;
+  box-shadow: 0 28px 70px rgba(23, 23, 47, 0.28);
+  transform: translateY(0.7rem) scale(0.98);
+  transition: transform 180ms ease;
+}
+
+.cousin-modal.is-open .modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.modal-card::after {
+  content: "";
+  position: absolute;
+  right: -4rem;
+  bottom: -4rem;
+  width: 13rem;
+  height: 13rem;
+  background: color-mix(in srgb, var(--modal-color) 24%, transparent);
+  border-radius: 50%;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  color: var(--white);
+  background: var(--modal-color);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.modal-character {
+  display: grid;
+  min-height: 22rem;
+  place-items: end center;
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1rem 0;
+}
+
+.modal-character img {
+  display: block;
+  width: min(100%, 15rem);
+  max-height: 20rem;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 18px rgba(23, 23, 47, 0.18));
+}
+
+.modal-copy {
+  position: relative;
+  z-index: 1;
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+.modal-location {
+  display: inline-flex;
+  margin-bottom: 0.7rem;
+  padding: 0.45rem 0.75rem;
+  color: var(--white);
+  background: var(--modal-color);
+  border-radius: 999px;
+  font-family: "Fredoka", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.modal-copy h2 {
+  margin-bottom: 0.25rem;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+}
+
+.modal-copy h3 {
+  color: var(--burgundy);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.modal-copy p:last-child {
+  margin-bottom: 0;
+  font-size: 1.08rem;
+}
 
 .game-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1299,6 +1431,19 @@ h3 {
 
   .cousin-card img {
     height: 10.5rem;
+  }
+
+  .modal-card {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-character {
+    min-height: 14rem;
+    padding-top: 2.5rem;
+  }
+
+  .modal-character img {
+    max-height: 13rem;
   }
 
   .jace-copy {

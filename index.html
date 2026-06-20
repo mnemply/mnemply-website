@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mnemply | Multiplication Through Story</title>
   <meta name="description" content="Mnemply helps children learn multiplication through Memory Spots, Cousins, Mem-Link Chains, and story-based adventures.">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="manifest" href="assets/site.webmanifest">
+  <link rel="shortcut icon" href="assets/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +18,7 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Mnemply home">
-      <span class="brand-mark">M</span>
+      <img class="brand-mark" src="assets/M_Transparent.png" alt="" aria-hidden="true">
       <span class="brand-text">Mnemply</span>
     </a>
 
@@ -136,38 +141,39 @@
     <section class="cousins section" id="cousins">
       <div class="section-heading">
         <p class="eyebrow">Meet The Cousins</p>
-        <h2>Seven colourful characters make memory feel like magic.</h2>
+        <h2>Meet the cousins who turn multiplication into a memory adventure.</h2>
+        <p>Each cousin helps children store, remember and retrieve multiplication facts using stories, visualisation and memory techniques.</p>
       </div>
 
       <div class="cousin-grid">
-        <article class="cousin-card cousin-red">
+        <button class="cousin-card cousin-red" type="button" data-cousin="jace">
           <img src="assets/00_Jace.png" alt="Jace">
           <h3>Jace</h3>
-        </article>
-        <article class="cousin-card cousin-orange">
+        </button>
+        <button class="cousin-card cousin-orange" type="button" data-cousin="olive">
           <img src="assets/01_Olive.png" alt="Olive">
           <h3>Olive</h3>
-        </article>
-        <article class="cousin-card cousin-yellow">
+        </button>
+        <button class="cousin-card cousin-yellow" type="button" data-cousin="braxton">
           <img src="assets/02_Braxton.png" alt="Braxton">
           <h3>Braxton</h3>
-        </article>
-        <article class="cousin-card cousin-green">
+        </button>
+        <button class="cousin-card cousin-green" type="button" data-cousin="lily">
           <img src="assets/03_Lily.png" alt="Lily">
           <h3>Lily</h3>
-        </article>
-        <article class="cousin-card cousin-blue">
+        </button>
+        <button class="cousin-card cousin-blue" type="button" data-cousin="laiken">
           <img src="assets/04_Laiken.png" alt="Laiken">
           <h3>Laiken</h3>
-        </article>
-        <article class="cousin-card cousin-indigo">
+        </button>
+        <button class="cousin-card cousin-indigo" type="button" data-cousin="alice">
           <img src="assets/05_Alice.png" alt="Alice">
           <h3>Alice</h3>
-        </article>
-        <article class="cousin-card cousin-violet">
+        </button>
+        <button class="cousin-card cousin-violet" type="button" data-cousin="joshua">
           <img src="assets/06_Joshua.png" alt="Joshua">
           <h3>Joshua</h3>
-        </article>
+        </button>
       </div>
     </section>
 
@@ -251,7 +257,8 @@
       <div>
         <p class="eyebrow">Ready to begin?</p>
         <h2>Ready to Begin the Adventure?</h2>
-        <p>Free to start. No pressure. Let your child experience Mnemply first.</p>
+        <p>Free Foundation Program. No credit card required.</p>
+        <p>Let your child experience Mnemply first.</p>
       </div>
       <a class="button button-primary" href="#contact">Start the Free Foundation Program</a>
     </section>
@@ -261,6 +268,22 @@
     <p>Mnemply homepage prototype</p>
     <p>Story-based multiplication for curious children and confident parents.</p>
   </footer>
+
+  <div class="cousin-modal" id="cousin-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-name" aria-describedby="modal-description">
+      <button class="modal-close" type="button" aria-label="Close cousin details" data-close-modal>&times;</button>
+      <div class="modal-character">
+        <img id="modal-image" src="assets/00_Jace.png" alt="">
+      </div>
+      <div class="modal-copy">
+        <p class="modal-location" id="modal-location"></p>
+        <h2 id="modal-name">Jace</h2>
+        <h3 id="modal-role">The Memory Guide</h3>
+        <p id="modal-description"></p>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
