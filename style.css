@@ -198,17 +198,29 @@ a {
 
 .magic-sprinkles {
   position: absolute;
-  top: 14%;
-  left: -3rem;
+  top: 16%;
+  left: -1.4rem;
   width: 9rem;
   height: 9rem;
   pointer-events: none;
+  opacity: 0.55;
   background:
     radial-gradient(circle at 25% 22%, var(--yellow) 0 0.42rem, transparent 0.45rem),
     radial-gradient(circle at 72% 18%, var(--blue) 0 0.32rem, transparent 0.35rem),
     radial-gradient(circle at 56% 72%, var(--red) 0 0.38rem, transparent 0.4rem),
     radial-gradient(circle at 18% 80%, var(--green) 0 0.28rem, transparent 0.3rem);
   filter: drop-shadow(0 8px 14px rgba(23, 23, 47, 0.12));
+}
+
+.hero .eyebrow {
+  margin-bottom: 1.05rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.13em;
+}
+
+.hero .eyebrow::before {
+  width: 1.95rem;
+  height: 0.5rem;
 }
 
 .eyebrow {
