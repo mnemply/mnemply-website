@@ -990,9 +990,10 @@ h3 {
 }
 
 .game-card {
-  min-height: 9rem;
-  display: flex;
-  align-items: flex-end;
+  min-height: 15rem;
+  display: grid;
+  align-content: space-between;
+  gap: 1rem;
   position: relative;
   overflow: hidden;
   color: var(--white);
@@ -1018,6 +1019,43 @@ h3 {
 .game-card:nth-child(4) { background: linear-gradient(135deg, var(--blue), var(--indigo)); }
 .game-card:nth-child(5) { background: linear-gradient(135deg, var(--indigo), var(--violet)); }
 .game-card:nth-child(6) { background: linear-gradient(135deg, var(--violet), var(--burgundy)); }
+
+.game-card span {
+  position: relative;
+  z-index: 1;
+}
+
+.game-thumb {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  height: 6.8rem;
+  place-items: center;
+  overflow: visible;
+  padding: 0.45rem;
+  background: rgba(255, 255, 255, 0.76);
+  border: 2px dashed rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+}
+
+.game-card:nth-child(1) .game-thumb,
+.game-card:nth-child(3) .game-thumb,
+.game-card:nth-child(4) .game-thumb,
+.game-card:nth-child(5) .game-thumb,
+.game-card:nth-child(6) .game-thumb {
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.game-thumb img {
+  display: block;
+  width: auto;
+  height: 5.7rem;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  filter: drop-shadow(0 10px 12px rgba(23, 23, 47, 0.16));
+}
 
 .pathway {
   display: grid;
